@@ -2,13 +2,13 @@ import pygame
 import numpy as np
 
 # Initialize the game window size and colors
-WINDOW_SIZE = (800, 800)
+WINDOW_SIZE = (1000, 1000)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GRID_COLOR = (50, 50, 50)
 
 # Set the size of the grid and the cells
-CELL_SIZE = 7
+CELL_SIZE = 8
 GRID_WIDTH = WINDOW_SIZE[0] // CELL_SIZE
 GRID_HEIGHT = WINDOW_SIZE[1] // CELL_SIZE
 
