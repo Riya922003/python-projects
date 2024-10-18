@@ -1,7 +1,7 @@
 # Hi Developers,  this repository qualify for HactoberFest 2024. 
 
 # About this repository
-This repository is made for absolute beginners who want to make their first pull request to get eligibility for HactoberFest-2024. Add mini java projects in this repository. Reviewers here are very active and supportive don't hesitate to make a pull request.
+This repository is made for absolute beginners who want to make their first pull request to get eligibility for HactoberFest-2024. Add mini python projects in this repository. Reviewers here are very active and supportive don't hesitate to make a pull request.
 #### Follow these simple steps to dive into the git world:
 
 1) `Fork` this repository.
