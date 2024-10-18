@@ -8,7 +8,7 @@ BLACK = (0, 0, 0)
 GRID_COLOR = (50, 50, 50)
 
 # Set the size of the grid and the cells
-CELL_SIZE = 10
+CELL_SIZE = 7
 GRID_WIDTH = WINDOW_SIZE[0] // CELL_SIZE
 GRID_HEIGHT = WINDOW_SIZE[1] // CELL_SIZE
 
