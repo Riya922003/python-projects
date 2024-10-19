@@ -2,7 +2,7 @@
 
 An intelligent implementation of the classic Snake game where the snake uses artificial intelligence to find and eat food automatically. The game features pathfinding algorithms and autonomous movement.
 
-![AI Snake Game Demo](https://www.google.com/url?sa=i&url=https%3A%2F%2F8thlight.com%2Finsights%2Fqlearning-teaching-ai-to-play-snake&psig=AOvVaw2uWpDP3enHlHBz6GWIyXeq&ust=1729418385117000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCPis3teXmokDFQAAAAAdAAAAABAE)
+![AI Snake Game Demo](snake-tutorial-13.gif)
 
 ## 🎮 Features
 
