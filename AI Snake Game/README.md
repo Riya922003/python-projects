@@ -22,7 +22,7 @@ An intelligent implementation of the classic Snake game where the snake uses art
 ## 📞 Contact
 
 For questions or suggestions, please reach out to:
-- Email: your.email@example.com
+- Email: nirmalsujit981@gmail.com
 - GitHub: [@blacksujit](https://github.com/blacksujit)
 
 ---
