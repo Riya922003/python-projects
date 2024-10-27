@@ -5,9 +5,9 @@ weight = int(input("Enter your Weight : "))
 unit =input("(L)bs or (K)g: ")
 
 if unit.lower()=='k':
-    ans = weight/0.45
+    ans = weight/0.453592
 else:
-    ans = weight*0.45
+    ans = weight*0.453592
 
 print(ans)
 

@@ -10,7 +10,7 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tessera
 engine = pyttsx3.init()
 
 # Directory to save images
-image_dir = r'C:\\Users\\rajee\\OneDrive\\Desktop\\project'
+image_dir = r'C:\\Users\\images'
 
 # Start webcam
 cap = cv2.VideoCapture(0)

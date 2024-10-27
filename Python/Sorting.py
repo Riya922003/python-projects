@@ -113,53 +113,26 @@ class SortingAlgorithms:
             self.arr[i], self.arr[largest] = self.arr[largest], self.arr[i]
             self.heapify(n, largest)
 
+    def bucket_sort(self):
+        max_value = max(self.arr)
+        size = len(self.arr)
+        bucket_count = 10
+        buckets = [[] for _ in range(bucket_count)]
+        self.reset_steps()
+        
+        for num in self.arr:
+            index = int(num * bucket_count / (max_value + 1))
+            buckets[index].append(num)
+        
+        self.arr = []
+        for bucket in buckets:
+            bucket.sort()
+            self.arr.extend(bucket)
+            self.steps += len(bucket)
+            
     def display(self):
         print("Sorted Array:", self.arr)
         print("Steps needed for sorting:", self.steps)
-
-   
-
-
-def radix_sort(self):
-        max_num = max(self.arr)
-        num_digits = len(str(max_num))
-        
-        # Initialize a bucket for each digit (0-9)
-        buckets = [[] for _ in range(10)]
-        
-        for digit in range(num_digits):
-            for num in self.arr:
-                index = (num // 10 ** digit) % 10
-                buckets[index].append(num)
-            
-            self.arr = []
-            for bucket in buckets:
-                self.arr.extend(bucket)
-            
-            buckets = [[] for _ in range(10)]
-
-
-
-def counting_sort(self):
-
-        max_num = max(self.arr)
-        min_num = min(self.arr)
-        range_of_values = max_num - min_num + 1
-
-        count = [0] * range_of_values
-        output = [0] * len(self.arr)
-
-        for num in self.arr:
-            count[num - min_num] += 1
-
-        for i in range(1, range_of_values):
-            count[i] += count[i - 1]
-
-        for num in reversed(self.arr):
-            output[count[num - min_num] - 1] = num
-            count[num - min_num] -= 1
-
-        self.arr = output
 
 
 # Base example array
@@ -216,4 +189,10 @@ sorting_obj.display()
 print("\nCounting Sort -")
 sorting_obj = SortingAlgorithms(arr)  # Reset the array
 sorting_obj.counting_sort()
+sorting_obj.display()
+
+# Bucket Sort
+print("\nBucket Sort -")
+sorting_obj = SortingAlgorithms(arr)  # Reset the array
+sorting_obj.bucket_sort()
 sorting_obj.display()
