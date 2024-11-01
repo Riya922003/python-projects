@@ -1,1 +1,4 @@
-python
+# requirements.txt
+
+# Specify Python version if you want to ensure compatibility
+python>=3.6
