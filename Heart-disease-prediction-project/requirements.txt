@@ -1,7 +1,8 @@
-csv
- pandas 
- numpy 
- seaborn 
- matplotlib.pyplot 
- timeit 
- random
+# requirements.txt
+
+csv  # This is a standard library module and doesn't need to be listed
+pandas>=1.0
+numpy>=1.18
+seaborn>=0.10
+matplotlib>=3.2
+timeit  # This is a standard library module and doesn't need to be listed
