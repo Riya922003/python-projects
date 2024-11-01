@@ -1,5 +1,2 @@
-# requirements.txt
-
-# Specify Python version (optional)
-python>=3.6
+# no specific requirements needed
 
