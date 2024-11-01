@@ -1,6 +1,5 @@
 import pygame
 import random
-import numpy as np
 from collections import deque
 
 # Initialize Pygame
@@ -25,6 +24,7 @@ RIGHT = (1, 0)
 screen = pygame.display.set_mode((WINDOW_SIZE, WINDOW_SIZE))
 pygame.display.set_caption("AI Snake Game")
 clock = pygame.time.Clock()
+SNAKE_SPEED = 10  # Control game speed
 
 class SnakeAI:
     def __init__(self):
@@ -40,7 +40,7 @@ class SnakeAI:
 
     def place_food(self):
         while True:
-            self.food = (random.randint(0, GRID_COUNT-1), random.randint(0, GRID_COUNT-1))
+            self.food = (random.randint(0, GRID_COUNT - 1), random.randint(0, GRID_COUNT - 1))
             if self.food not in self.positions:
                 break
 
@@ -91,10 +91,21 @@ class SnakeAI:
             
         return path[1]
 
+    def check_collision(self):
+        head = self.positions[0]
+        # Check wall collisions
+        if (head[0] < 0 or head[0] >= GRID_COUNT or
+            head[1] < 0 or head[1] >= GRID_COUNT):
+            return True
+        # Check self-collision
+        if head in self.positions[1:]:
+            return True
+        return False
+
     def update(self):
         next_move = self.get_next_move()
         
-        if next_move is None:
+        if next_move is None or self.check_collision():
             return False
             
         self.positions.insert(0, next_move)
@@ -111,12 +122,12 @@ class SnakeAI:
         # Draw snake
         for position in self.positions:
             rect = pygame.Rect(position[1] * GRID_SIZE, position[0] * GRID_SIZE,
-                             GRID_SIZE-2, GRID_SIZE-2)
+                             GRID_SIZE - 2, GRID_SIZE - 2)
             pygame.draw.rect(screen, GREEN, rect)
             
         # Draw food
         rect = pygame.Rect(self.food[1] * GRID_SIZE, self.food[0] * GRID_SIZE,
-                          GRID_SIZE-2, GRID_SIZE-2)
+                          GRID_SIZE - 2, GRID_SIZE - 2)
         pygame.draw.rect(screen, RED, rect)
 
         # Draw grid lines (optional)
@@ -135,6 +146,7 @@ def main():
                 
         # Update game state
         if not snake.update():
+            print(f"Game Over! Final Score: {snake.score}")  # Show final score
             snake.reset()
             
         # Draw
@@ -147,7 +159,7 @@ def main():
         screen.blit(score_text, (10, 10))
         
         pygame.display.flip()
-        clock.tick(10)  # Control game speed
+        clock.tick(SNAKE_SPEED)  # Control game speed
 
     pygame.quit()
 
