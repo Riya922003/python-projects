@@ -1,4 +1,4 @@
-pygame
-random
-numpy 
+pygame             # For creating video games and multimedia applications
+numpy              # For numerical operations and handling arrays
+
 
