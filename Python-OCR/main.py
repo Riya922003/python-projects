@@ -1,6 +1,5 @@
 import cv2
 import pytesseract
-import os
 import pyttsx3
 
 # Path to Tesseract executable (change it to match your system)
@@ -8,9 +7,6 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tessera
 
 # Initialize the Text-to-Speech engine
 engine = pyttsx3.init()
-
-# Directory to save images
-image_dir = r'C:\\Users\\images'
 
 # Start webcam
 cap = cv2.VideoCapture(0)
@@ -22,6 +18,7 @@ while True:
     # Capture frame from webcam
     ret, frame = cap.read()
     if not ret:
+        print("Failed to capture frame.")
         break
 
     # Display the frame
@@ -32,13 +29,16 @@ while True:
             # Perform OCR
             text = pytesseract.image_to_string(gray)
             print("OCR Result:", text)
-            current_text = text
+            current_text = text.strip()  # Strip leading/trailing whitespace
 
             # Convert OCR result to speech
-            engine.say(text)
-            engine.runAndWait()
+            if current_text:  # Only speak if there is text
+                engine.say(current_text)
+                engine.runAndWait()
         except pytesseract.TesseractError as e:
             print("Tesseract Error:", e)
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
         # Reset processing_image flag
         processing_image = False
@@ -54,6 +54,7 @@ while True:
     # Check for key press events
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
+        print("Quitting...")
         break
     elif key & 0xFF == ord(' '):  # Check for spacebar press
         processing_image = True
