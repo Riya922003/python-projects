@@ -1,18 +1,16 @@
-import imp
-from turtle import*
+from turtle import *
 
-bgcolor('black')
-speed(0)
-hideturtle()
+bgcolor('black')  # Set the background color to black
+speed(0)          # Set the drawing speed to the maximum
+hideturtle()      # Hide the turtle
 
-circle(5*5.2)
-color('red')
-done()
-# for i in range(1):
-#     color('red')
-#     circle(i)
-#     color('orange')
-#     circle(i*0.0)
-#     right(3)
-#     forward(3)
-# done()
+# Draw a series of circles with rotation and color change
+for i in range(100):  # Change the range for more circles
+    color('red')      # Set the color to red
+    circle(i)         # Draw a circle with increasing radius
+    color('orange')   # Change color to orange
+    circle(i * 0.5)   # Draw a smaller circle within
+    right(3)          # Rotate the turtle slightly
+    forward(3)        # Move the turtle forward slightly
+
+done()  # Keep the window open
