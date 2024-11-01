@@ -1,1 +1,5 @@
+# requirements.txt
+
+# Specify Python version if desired
+python>=3.6
 
