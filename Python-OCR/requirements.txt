@@ -1,1 +1,5 @@
+cv2
+ pytesseract
+ os
+pyttsx3
 
