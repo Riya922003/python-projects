@@ -3,12 +3,12 @@ import random
 # List of words to choose from
 words = ["python", "hangman", "computer", "programming", "challenge"]
 
-# Function to choose a random word
 def choose_word():
+    """Choose a random word from the list."""
     return random.choice(words)
 
-# Function to display the current state of the word with blanks
 def display_word(word, guessed_letters):
+    """Display the current state of the word."""
     display = ""
     for letter in word:
         if letter in guessed_letters:
@@ -17,38 +17,46 @@ def display_word(word, guessed_letters):
             display += "_"
     return display
 
-# Function to play Hangman
 def play_hangman():
-    word_to_guess = choose_word()
-    guessed_letters = []
-    attempts = 6
+    """Play the Hangman game."""
+    while True:
+        word_to_guess = choose_word()
+        guessed_letters = []
+        attempts = 6
 
-    print("Welcome to Hangman!")
+        print("Welcome to Hangman!")
 
-    while attempts > 0:
-        print("\nWord: " + display_word(word_to_guess, guessed_letters))
-        print("Attempts left:", attempts)
+        while attempts > 0:
+            print("\nWord: " + display_word(word_to_guess, guessed_letters))
+            print("Attempts left:", attempts)
+            print("Guessed letters:", " ".join(guessed_letters))
 
-        guess = input("Guess a letter: ").lower()
+            guess = input("Guess a letter: ").lower()
 
-        if len(guess) == 1 and guess.isalpha():
-            if guess in guessed_letters:
-                print("You've already guessed that letter.")
-            elif guess in word_to_guess:
-                print("Good guess!")
-                guessed_letters.append(guess)
-                if set(word_to_guess).issubset(set(guessed_letters)):
-                    print("Congratulations! You've guessed the word:", word_to_guess)
-                    break
+            if len(guess) == 1 and guess.isalpha():
+                if guess in guessed_letters:
+                    print("You've already guessed that letter.")
+                elif guess in word_to_guess:
+                    print("Good guess!")
+                    guessed_letters.append(guess)
+                    if set(word_to_guess).issubset(set(guessed_letters)):
+                        print("Congratulations! You've guessed the word:", word_to_guess)
+                        break
+                else:
+                    print("Wrong guess!")
+                    guessed_letters.append(guess)
+                    attempts -= 1
             else:
-                print("Wrong guess!")
-                guessed_letters.append(guess)
-                attempts -= 1
-        else:
-            print("Invalid input. Please enter a single letter.")
+                print("Invalid input. Please enter a single letter.")
 
-    if attempts == 0:
-        print("You ran out of attempts. The word was:", word_to_guess)
+        if attempts == 0:
+            print("You ran out of attempts. The word was:", word_to_guess)
+
+        # Ask the player if they want to play again
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again != 'yes':
+            print("Thanks for playing!")
+            break
 
 # Start the game
 play_hangman()
