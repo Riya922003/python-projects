@@ -1,2 +1,9 @@
-   Pillow
-   imageio
+# requirements.txt
+
+Pillow               # For image processing
+imageio              # For reading and writing image data
+torch                # For PyTorch library
+torchvision          # For computer vision tools and datasets
+transformers         # For using transformer models
+numpy                # For numerical operations
+shutil               # For file operations (standard library, no installation needed)
