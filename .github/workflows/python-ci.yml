@@ -1,0 +1,45 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10']
+        project: [AI Snake Game,Car-game-project,Check-your-weight-project,Morsecode-project,Pattern,Python-OCR,Shape-project,Tic-Tac-Toe-project,expense_tracker_project,gif_generator,hagman-game-project,life-game,object-detection,todo_app]  # Add each project folder here
+
+    steps:
+      - name: Check out repository,
+        uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          if [ -f ${{ matrix.project }}/requirements.txt ]; then
+            pip install -r ${{ matrix.project }}/requirements.txt
+          fi
+        working-directory: ${{ matrix.project }}
+
+      - name: Run Linter (flake8)
+        run: |
+          pip install flake8
+          flake8 .
+        working-directory: ${{ matrix.project }}
+
+      - name: Run Tests
+        run: |
+          pip install pytest
+          pytest
+        working-directory: ${{ matrix.project }}
