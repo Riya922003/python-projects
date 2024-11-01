@@ -1,3 +1,4 @@
- pandas
- matplotlib.pyplot
- sklearn.metrics
+pandas>=1.0
+matplotlib>=3.2
+scikit-learn>=0.22
+
