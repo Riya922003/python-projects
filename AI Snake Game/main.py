@@ -49,22 +49,20 @@ class SnakeAI:
         goal = self.food
         queue = deque([[start]])
         visited = set([start])
-        
+
         while queue:
             path = queue.popleft()
             row, col = path[-1]
-            
             if (row, col) == goal:
                 return path
-                
-            # Check all neighbors
+            
             for dr, dc in [UP, DOWN, LEFT, RIGHT]:
                 r, c = row + dr, col + dc
                 
-                if (0 <= r < GRID_COUNT and 
-                    0 <= c < GRID_COUNT and 
-                    (r, c) not in visited and 
-                    (r, c) not in self.positions[1:]):
+                if (0 <= r < GRID_COUNT and
+                        0 <= c < GRID_COUNT and
+                        (r, c) not in visited and
+                        (r, c) not in self.positions[1:]):
                     
                     queue.append(path + [(r, c)])
                     visited.add((r, c))
@@ -77,57 +75,54 @@ class SnakeAI:
             # If no path is found, try to avoid obstacles
             head = self.positions[0]
             possible_moves = []
-            
+
             for dr, dc in [UP, DOWN, LEFT, RIGHT]:
                 r, c = head[0] + dr, head[1] + dc
-                if (0 <= r < GRID_COUNT and 
-                    0 <= c < GRID_COUNT and 
-                    (r, c) not in self.positions):
+                if (0 <= r < GRID_COUNT and
+                        0 <= c < GRID_COUNT and
+                        (r, c) not in self.positions):
                     possible_moves.append((r, c))
-            
+
             if possible_moves:
                 return random.choice(possible_moves)
             return None
-            
+        
         return path[1]
 
     def check_collision(self):
         head = self.positions[0]
         # Check wall collisions
         if (head[0] < 0 or head[0] >= GRID_COUNT or
-            head[1] < 0 or head[1] >= GRID_COUNT):
+                head[1] < 0 or head[1] >= GRID_COUNT):
             return True
-        # Check self-collision
         if head in self.positions[1:]:
             return True
         return False
 
     def update(self):
         next_move = self.get_next_move()
-        
         if next_move is None or self.check_collision():
             return False
-            
-        self.positions.insert(0, next_move)
         
+        self.positions.insert(0, next_move)
         if self.positions[0] == self.food:
             self.score += 1
             self.place_food()
         else:
             self.positions.pop()
-            
+        
         return True
 
     def draw(self, screen):
         # Draw snake
         for position in self.positions:
             rect = pygame.Rect(position[1] * GRID_SIZE, position[0] * GRID_SIZE,
-                             GRID_SIZE - 2, GRID_SIZE - 2)
+                               GRID_SIZE - 2, GRID_SIZE - 2)
             pygame.draw.rect(screen, GREEN, rect)
-            
+
         # Draw food
         rect = pygame.Rect(self.food[1] * GRID_SIZE, self.food[0] * GRID_SIZE,
-                          GRID_SIZE - 2, GRID_SIZE - 2)
+                           GRID_SIZE - 2, GRID_SIZE - 2)
         pygame.draw.rect(screen, RED, rect)
 
         # Draw grid lines (optional)
@@ -138,29 +133,27 @@ class SnakeAI:
 def main():
     snake = SnakeAI()
     running = True
-    
+
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-                
-        # Update game state
+        
         if not snake.update():
             print(f"Game Over! Final Score: {snake.score}")  # Show final score
             snake.reset()
-            
-        # Draw
+
         screen.fill(BLACK)
         snake.draw(screen)
-        
+
         # Draw score
         font = pygame.font.Font(None, 36)
         score_text = font.render(f'Score: {snake.score}', True, WHITE)
         screen.blit(score_text, (10, 10))
-        
+
         pygame.display.flip()
         clock.tick(SNAKE_SPEED)  # Control game speed
-
+    
     pygame.quit()
 
 if __name__ == "__main__":
