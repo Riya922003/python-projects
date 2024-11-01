@@ -1,1 +1,7 @@
-python
+# requirements.txt
+# No external dependencies are required for this program.
+# Only Python's built-in libraries are used.
+
+# Optionally, specify a compatible Python version if needed.
+# e.g., Python 3.8 or later:
+python>=3.8
