@@ -14,13 +14,13 @@ Follow the simple guidelines below to start contributing. Let's celebrate open s
 2. **Clone the Repository**  
    - Clone the repository to your local system:  
      ```bash
-     git clone https://github.com/YOUR-USERNAME/HactoberFest-2022.git
+       https://github.com/Riya922003/python-projects.git
      ```
 
 3. **Change Your Directory**  
    - Navigate to the repository folder:  
      ```bash
-     cd HactoberFest-2022
+     cd python-projects
      ```
 
 4. **Create a New Branch**  
@@ -77,4 +77,4 @@ Follow the simple guidelines below to start contributing. Let's celebrate open s
 
 - Clone the Repository:  
   ```bash
-  git clone https://github.com/YOUR-USERNAME/HactoberFest-2022.git
+     https://github.com/Riya922003/python-projects.git
